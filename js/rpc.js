@@ -9,4 +9,7 @@ function getComputerChoice() {
     return choices[getRandomInt(choices.length)];
 }
 
-console.log(getComputerChoice())
+function getHumanChoice() {
+    const userChoice = prompt("rock, paper or scissors?");
+    return userChoice.toLowerCase();
+}
