@@ -1,7 +1,7 @@
 const choices = ["rock", "paper", "scissors"];
 
-var computerScore = 0;
-var humanScore = 0;
+let computerScore = 0;
+let humanScore = 0;
 
 // Return a random integer between 0 and max (exclusive) 
 function getRandomInt(max) {
@@ -17,9 +17,6 @@ function getHumanChoice() {
     return userChoice.toLowerCase();
 }
 
-const computerChoice = getComputerChoice();
-const humanChoice = getHumanChoice();
-
 function playRound(computerChoice, humanChoice) {
     const rules = {
         rock: "scissors",   //rock beat scissors
@@ -28,19 +25,36 @@ function playRound(computerChoice, humanChoice) {
     }
 
     if (computerChoice == humanChoice) {
-        return console.log("It's a Tie!");
+        console.log("It's a Tie!");
+        return;
     }
 
     if (rules[computerChoice] == humanChoice){
+        console.log(`Computer win! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
-        return console.log(`Computer win! ${computerChoice} beats ${humanChoice}`);
+        return;
     } else {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
-        return console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        return
     }
 }
 
-playRound(computerChoice, humanChoice);
+function playGame() {
+    for (let rounds = 5; rounds > 0; rounds--) {
+        const computerChoice = getComputerChoice();
+        const humanChoice = getHumanChoice();
 
-console.log(`Computer Score: ${computerScore}`);
-console.log(`Human Score: ${humanScore}`)
+        playRound(computerChoice, humanChoice);
+    }
+
+    if (computerScore == humanScore) {
+        console.log(`It's a Tie!`);
+    } else if (computerScore > humanScore) {
+        console.log(`Computer win!`);
+    } else {
+        console.log(`You win!`);
+    }
+}
+
+playGame();
